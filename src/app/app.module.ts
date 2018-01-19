@@ -19,6 +19,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExportingComponent } from './exporting/exporting.component';
+import { NotepadComponent } from './notepad/notepad.component';
 
 const appRoutes: Routes = [
   {
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
     AppComponent,
     RetroBoardComponent,
     LoginComponent,
+    NotepadComponent,
     PageNotFoundComponent,
     UserDetailComponent,
     CountdownTimerComponent,

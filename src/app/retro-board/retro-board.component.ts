@@ -66,7 +66,7 @@ export class RetroBoardComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
     this.db.object(`/retroboards/${this.uid}/${id}`)
       .subscribe(retroboard => this.retroboard = retroboard);
-     
+
 
     this.buckets = this.route.paramMap
       .switchMap((params: ParamMap) => this.db.list(`/buckets/${params.get('id')}`))

@@ -34,7 +34,19 @@
       </div>
     </div>
   </div>
-  <exporting [jsonData]="jsonData"></exporting>
+  <notepad></notepad>
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <div class="scratchpad">
+        <textarea type="text" placeholder="Notes..." name="input"></textarea>
+      </div>
+    </div>
+  </div> -->
+  <div class="row">
+    <div class="col-md-12">
+      <exporting [jsonData]="jsonData"></exporting>
+    </div>
+  </div>
 </div>
 <ng-template #addtemplate>
   <div class="modal-header">
