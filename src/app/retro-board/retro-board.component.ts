@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {AfterViewInit, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {BsModalService} from 'ngx-bootstrap/modal';
 import {BsModalRef} from 'ngx-bootstrap/modal/modal-options.class';
@@ -15,7 +15,7 @@ import 'rxjs/add/operator/switchMap';
   templateUrl: './retro-board.component.html',
   styleUrls: ['./retro-board.component.less']
 })
-export class RetroBoardComponent implements OnInit {
+export class RetroBoardComponent implements OnInit, AfterViewInit {
   user: Observable<firebase.User>;
   uid: string;
   retroboard: any;
@@ -31,6 +31,8 @@ export class RetroBoardComponent implements OnInit {
   activeNote: any;
   activeVote: boolean;
   jsonData: Object;
+
+  @ViewChild('focusCursor') cursor: any;
 
   constructor(private db: AngularFireDatabase,
               private modalService: BsModalService,
@@ -66,7 +68,7 @@ export class RetroBoardComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
     this.db.object(`/retroboards/${this.uid}/${id}`)
       .subscribe(retroboard => this.retroboard = retroboard);
-     
+
 
     this.buckets = this.route.paramMap
       .switchMap((params: ParamMap) => this.db.list(`/buckets/${params.get('id')}`))
@@ -96,6 +98,12 @@ export class RetroBoardComponent implements OnInit {
           });
       });
     });
+  }
+
+  ngAfterViewInit(){
+    setTimeout(() => {
+        this.cursor.nativeElement.focus();
+      });
   }
 
   addNote(message: string) {
